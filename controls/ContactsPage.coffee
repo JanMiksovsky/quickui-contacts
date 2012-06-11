@@ -25,10 +25,8 @@ class window.ContactsPage extends Page
       control: "VerticalPanels", constrainHeight: true
       top:
         control: "Toolbar"
-      content: [
-        { html: "<img src='resources/progress.gif'/>", ref: "progressSpinner" }
+      content:
         control: "ContactListBox", ref: "ContactsPage_contacts"
-      ]
 
   # The page exposes various list box properties as its own properties.
   # This lets the Presenter manipulate the set of contacts and the selection
@@ -40,5 +38,3 @@ class window.ContactsPage extends Page
     @$ContactsPage_contacts().removeItemAt args...
   selectedCard: Control.chain "$ContactsPage_contacts", "selectedControl"
   selectedIndex: Control.chain "$ContactsPage_contacts", "selectedIndex"
-
-  showProgress: Control.chain "$progressSpinner", "visibility"
