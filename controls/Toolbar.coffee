@@ -11,6 +11,8 @@ class window.Toolbar extends Control
       { control: PopupButton, ref: "buttonDebug", content: "Debug", popup: [
           { control: MenuItem, ref: "menuItemSamples", content: "Reload Sample Contacts" }
           { control: MenuItem, ref: "menuItemEraseAll", content: "Remove All" }
+          { control: MenuSeparator }
+          { control: MenuItem, ref: "menuAbout", content: "About This Application" }
       ]}
     ]
 
@@ -18,3 +20,5 @@ class window.Toolbar extends Control
     @$buttonNew().click => @trigger "new"
     @$menuItemSamples().click => @trigger "samples"
     @$menuItemEraseAll().click => @trigger "eraseAll"
+    @$menuAbout().click =>
+      window.open "http://quickui.org/docs/contacts.html"
