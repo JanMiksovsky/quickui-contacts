@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css" href="http://fast.fonts.com/cssapi/72bd3277-b253-4903-97d8-6a9d18744569.css" />
+
+<link rel="stylesheet" type="text/css" href="http://quickui/release/quickui.css" />
+<link rel="stylesheet" type="text/css" href="http://quickui/release/quickui.catalog.css" />
+<link rel="stylesheet" type="text/css" href="../../controls/controls.css" />
+<link rel="stylesheet" type="text/css" href="contacts.css" />
+
+<!--
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore.js"></script>
+<script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone.js"></script>
+-->
+<script type="text/javascript" src="http://localhost/projects/lib/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="http://localhost/projects/lib/underscore.js"></script>
+<script type="text/javascript" src="http://localhost/projects/lib/backbone.js"></script>
+<script type="text/javascript" src="http://localhost/projects/lib/backbone.localStorage.js"></script>
+
+<script type="text/javascript" src="http://quickui/release/quickui.js"></script>
+<script type="text/javascript" src="http://quickui/release/quickui.catalog.js"></script>
+<script type="text/javascript" src="../../controls/controls.js"></script>
+<script type="text/javascript" src="contacts.js"></script>
+
+<script>
+/*
+ * Top function that creates the top-level View and Model and hands them to the
+ * Presenter, which will wire them together. These are all created as top-level
+ * globals to assist debugging.
+ */
+$( function() {
+    
+    /* Create a Contacts collection to serve as the top-level Model. */
+    window.contacts = new Contacts();
+    
+    /* Create a ContactsPage control to serve as the top-level View. */
+    window.contactsPage = $( document.body ).control( ContactsPage );
+    
+    window.contactsPresenter = new ContactsPresenter({
+        el: contactsPage,
+        model: window.contacts
+    });
+
+    /* Load the contacts collection. */
+    contacts.fetch();
+    
+});
+</script>
+
+</head>
+
+<!-- The empty body will populated entirely through script. -->
+<body/>
+
+</html>

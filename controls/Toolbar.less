@@ -1,0 +1,35 @@
+@btnPrimaryBackground:              #64908A;
+@btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 15%);
+
+.Toolbar {
+  #gradient > .vertical-three-colors(#4078a5, #424254, 50%, #35354f);
+  .box-shadow( 0 5px 1em rgba( 0, 0, 0, 0.3 ) );
+  padding: 1em 2em;
+  position: relative; /* So z-index works */
+  z-index: 1; /* So shadow goes over content area */
+
+  .logo {
+    color: white;
+    display: inline;
+    font-size: 24px;
+    margin-right: 2em;
+  }
+  
+  > * {
+    vertical-align: middle;
+  }
+  
+  > .BasicButton {
+    margin-right: 1em;
+  }
+
+  .buttonNew {
+    //background: #64908A;
+    .buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
+    color: white;
+    font-family: @boldFontFamily;
+    font-weight: normal;
+    text-shadow: none;
+  }
+
+}

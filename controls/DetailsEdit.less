@@ -1,0 +1,39 @@
+.DetailsEdit {
+    
+  input {
+    .border-box();
+    font-size: 14px;
+  }
+
+	.buttonDelete {
+	  bottom: 15px;
+	  display: none;
+	  padding: 0;
+	  position: absolute;
+	}
+  
+  .buttonPanel {
+    display: none;
+    margin-top: 1em;
+
+    > * {
+      margin-right: 0.5em;
+    }
+    
+    .prominent {
+      .buttonBackground(@color-prominent-button, @color-prominent-button-highlight);
+      color: white;
+    }
+  }
+
+	.selected & {
+    .buttonDelete {
+      display: block;
+    }
+
+    .buttonPanel {
+      display: block;
+    }
+	}
+
+}

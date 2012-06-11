@@ -1,0 +1,63 @@
+.Card {
+  display: inline-block;
+  margin: 1%;
+  height: 190px;
+  position: relative;
+  vertical-align: top;
+  -moz-transition: 0.1s;
+  width: 325px;
+  
+  .container {
+    background: #fafafa;
+    border: 1px solid #ccc;
+    .border-box;
+    .box-shadow( 1px 1px 1px rgba( 0, 0, 0, 0.5 ) );
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    cursor: default;
+    height: 190px;
+    left: 0;
+    overflow: hidden;
+    min-height: 190px;
+    position: absolute;
+    /*
+     * Don't animate height. When we transition to the selected state, the
+     * height changes from a fixed height to an auto height, and the contents
+     * will appear at full height before the background has a chance to
+     * animate to the proper height.
+     */
+    .transition( ~"all 0.1s, height 0" );
+    top: 0;
+    .user-select( none );
+    width: 100%;
+    
+    &:hover {
+      .box-shadow( 1px 1px 10px rgba( 0, 0, 0, 0.5 ) );
+    }
+  }
+  
+  .Card_content {
+    padding: 15px;
+    position: relative;
+  }
+  
+  /*
+   * A card's height is normally constrained. If the "selected" class is applied,
+   * the card pops out and expands to the size of its content.
+   */
+  &.selected {
+    .container {
+      background: white;
+      .box-shadow( 5px 5px 40px rgba( 0, 0, 0, 0.75 ) );
+      cursor: auto;
+      height: auto;
+      left: -2px;
+      overflow: inherit;
+      top: -2px;
+      .user-select( auto );
+      z-index: 1;
+      width: 329px;
+    }
+  }
+}
+

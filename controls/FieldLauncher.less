@@ -1,0 +1,16 @@
+.FieldLauncher {
+
+  .launchButton {
+    opacity: 0;
+    .transition( 0.5s );
+    visibility: hidden;
+  }
+
+  .selected & {
+  	.launchButton {
+      opacity: 1;
+      visibility: visible;
+  	}
+  }
+
+}

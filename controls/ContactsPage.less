@@ -1,0 +1,30 @@
+.ContactsPage {
+  
+  background-image: url(resources/clothBackground.jpg);
+
+  .ContactsPage_contacts {
+    /*
+     * The contact list should fill the main content panel. We'd normally just
+     * do width: 100%, but IE9 adds an odd right margin when none is desired.
+     * Using left: 0 and right: 0 produces the correct result.
+     */
+    .border-box();
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+
+  .progressSpinner {
+    background: white;
+    .border-radius( 3px );
+  	bottom: 50%;
+  	display: none;
+    opacity: .8;
+    padding: 1em;
+  	position: absolute;
+  	right: 50%;
+    z-index: 2;
+  }
+  
+}

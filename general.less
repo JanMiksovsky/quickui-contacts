@@ -1,0 +1,167 @@
+/*
+ * General style sheet for the app.
+ */
+
+
+// Typography
+// -------------------------
+@sansFontFamily:        "AvenirNextLTW01-Regular", Helvetica, Arial, sans-serif;
+
+@baseFontSize:          15px;
+@baseFontFamily:        @sansFontFamily;
+@baseLineHeight:        18px;
+
+// TODO: Fix bold and italic in fallback cases.
+@boldFontFamily:        "Avenir Next LT W01 Bold", Helvetica, Arial, sans-serif;
+@italicFontFamily:      "AvenirNextLTW01-Italic", Helvetica, Arial, sans-serif;
+
+/*
+ * Palette colors based on "You are Beautiful"
+ * http://www.colourlovers.com/palette/379413/you_are_beautiful
+ */
+@color-prominent-button: #cc2a41;
+@color-prominent-button-highlight: spin(@color-prominent-button, 15%);
+
+
+// Basic styles
+
+body, input {
+  color: #351330;
+  font-family: @baseFontFamily;
+  font-size: 15px;
+}
+
+h1, h2, h3, b, strong {
+  font-family: @boldFontFamily;
+  font-weight: normal;
+}
+
+i, em {
+  font-family: @italicFontFamily;
+  font-weight: normal;
+}
+
+a {
+  color: #08c;
+}
+
+
+// Button backgrounds
+// ------------------
+.buttonBackground(@startColor, @endColor) {
+  // gradientBar will set the background to a pleasing blend of these, to support IE<=9
+  .gradientBar(@startColor, @endColor);
+  *background-color: @endColor; /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  .reset-filter();
+
+  // in these cases the gradient won't cover the background, so we override
+  &:hover, &:active, &.active, &.disabled, &[disabled] {
+    background-color: @endColor;
+    *background-color: darken(@endColor, 5%);
+  }
+
+  // IE 7 + 8 can't handle box-shadow to show active, so we darken a bit ourselves
+  &:active,
+  &.active {
+    background-color: darken(@endColor, 10%) e("\9");
+  }
+}
+
+// BUTTON STYLES
+// -------------
+
+// Grays
+// -------------------------
+@black:                 #000;
+@grayDarker:            #222;
+@grayDark:              #333;
+@gray:                  #555;
+@grayLight:             #999;
+@grayLighter:           #eee;
+@white:                 #fff;
+
+// Links
+// -------------------------
+@linkColor:             #08c;
+@linkColorHover:        darken(@linkColor, 15%);
+
+// Buttons
+// -------------------------
+@btnBackground:                     @white;
+@btnBackgroundHighlight:            darken(@white, 10%);
+@btnBorder:                         #ccc;
+
+@btnPrimaryBackground:              @linkColor;
+@btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 15%);
+
+
+// Base styles
+// --------------------------------------------------
+
+// Core
+.BasicButton.generic {
+  display: inline-block;
+  padding: 4px 10px 4px;
+  margin-bottom: 0; // For input.btn.generic
+  font-family: @baseFontFamily;
+  font-size: @baseFontSize;
+  line-height: @baseLineHeight;
+  *line-height: 20px;
+  color: @grayDark;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(255,255,255,.75);
+  vertical-align: middle;
+  cursor: pointer;
+  .buttonBackground(@btnBackground, @btnBackgroundHighlight);
+  border: 1px solid @btnBorder;
+  *border: 0; // Remove the border to prevent IE7's black border on input:focus
+  border-bottom-color: darken(@btnBorder, 10%);
+  .border-radius(4px);
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
+}
+
+// Hover state
+.BasicButton.generic:hover {
+  color: @grayDark;
+  text-decoration: none;
+  background-color: darken(@white, 10%);
+  *background-color: darken(@white, 15%); /* Buttons in IE7 don't get borders, so darken on hover */
+  background-position: 0 -15px;
+
+  // transition is only when going to hover, otherwise the background
+  // behind the gradient (there for IE<=9 fallback) gets mismatched
+  .transition(background-position .1s linear);
+}
+
+// Focus state for keyboard and accessibility
+.BasicButton.generic:focus {
+  .tab-focus();
+}
+
+// Active state
+.BasicButton.generic.active,
+.BasicButton.generic:active {
+  background-color: darken(@white, 10%);
+  background-color: darken(@white, 15%) e("\9");
+  background-image: none;
+  outline: 0;
+  .box-shadow(~"inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05)");
+}
+
+// Disabled state
+.BasicButton.generic.disabled,
+.BasicButton.generic[disabled] {
+  cursor: default;
+  background-color: darken(@white, 10%);
+  background-image: none;
+  .opacity(65);
+  .box-shadow(none);
+}
+
+
+// Menu items
+.MenuItem.generic {
+  background: whitesmoke;
+  border: none;
+  text-align: left;
+}

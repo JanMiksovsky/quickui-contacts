@@ -1,0 +1,75 @@
+.ContactDetails {
+
+  .left {
+    .border-box();
+    height: 100%;
+    margin-right: 15px;
+    padding: 15px 0;
+    position: absolute;
+    top: 0;
+    
+    > * {
+      display: block;
+    }
+    
+    /* Photo container exists to provide a placeholder if there's no photo. */
+    .photoContainer {
+      background: #ddd;
+      height: 75px;
+      left: 6px;
+      margin-bottom: 15px;
+      position: relative;
+      top: 6px; /* Top-align with content of name field */
+      width: 75px;
+
+      .photo {
+        height: 75px;
+        width: 75px;
+      }
+    }
+
+  }
+
+  .main {
+    display: block;
+    font-size: 14px;
+    left: 96px;
+    position: relative;
+    width: 200px;
+    word-wrap: break-word;
+    
+    > * {
+      display: block;
+      width: 100%;
+    }
+   
+		.name, .email {
+		  margin: 0 0 0.5em 0;
+		}
+
+		.name, .name input {
+		  font-family: @boldFontFamily;    
+		  font-size: 18px;
+		  font-weight: normal;
+		}
+  }
+  
+  /* Selected state */
+  .selected & {
+
+    .photoContainer {
+      .photo {
+        height: 77px;
+        .transition( 0.1s );
+        width: 77px;
+      }
+    }
+
+    .main {
+      left: 98px; /* Preserves horizontal position on slightly bigger card. */
+      .transition( 0.1s );
+    }
+    
+  }
+
+}

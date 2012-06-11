@@ -1,0 +1,4 @@
+*.sublime-*
+contacts.js
+contacts.css
+test/unittests.js
