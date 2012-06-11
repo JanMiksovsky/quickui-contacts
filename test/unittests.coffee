@@ -43,14 +43,15 @@ $ ->
     contact = new Contact name: "Ann"
     contacts.add contact
     card = ContactCard.create contact: contact
-    card.name "Annie"
-    card.save()
+    card.$modeEdit().name "Annie"
+    card.$modeEdit().save()
     equal contact.get( "name" ), "Annie"
 
   test "View: Save button disabled if name is empty", ->
-    contact = 
+    contact = new Contact()
     card = ContactCard.create()
     card.contact contact
-    ok card.$buttonSave().disabled()
-    card.name "Ann"
-    ok !card.$buttonSave().disabled()
+    $modeEdit = card.$modeEdit()
+    ok $modeEdit.$buttonSave().disabled()
+    $modeEdit.name "Ann"
+    ok !$modeEdit.$buttonSave().disabled()

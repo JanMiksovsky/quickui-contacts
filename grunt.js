@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
-    grunt.loadTasks( "../../../quickui/grunt" );
+    // TODO: Provide copy of these grunt tasks.
+    grunt.loadTasks( "../../quickui/grunt" );
 
     // Project configuration.
     grunt.initConfig({
