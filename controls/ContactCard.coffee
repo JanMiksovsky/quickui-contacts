@@ -29,6 +29,7 @@ class window.ContactCard extends Card
   editing: Control.chain( "applyClass/editing", ( editing ) ->
     if editing
       @$mode().activeChild @$modeEdit()
+      @$modeEdit().focusField "name"
     else
       # Switching back to read mode.
       @$modeRead().refresh() # Pick up any changes made in edit mode.
