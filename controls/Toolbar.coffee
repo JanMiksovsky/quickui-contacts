@@ -7,7 +7,12 @@ class window.Toolbar extends Control
   inherited:
     content: [
       { html: "<h1>Contacts</h1>", ref: "logo" }
-      { control: BasicButton, ref: "buttonNew", content: "+ New" }
+      {
+          control: BasicButton
+          ref: "buttonNew"
+          content: "+ New"
+          title: "Create contact [Shortcut: \"+\" key]"
+      }
       { control: PopupButton, ref: "buttonDebug", content: "Debug", popup: [
           { control: MenuItem, ref: "menuItemSamples", content: "Reload Sample Contacts" }
           { control: MenuItem, ref: "menuItemEraseAll", content: "Remove All" }
@@ -22,3 +27,8 @@ class window.Toolbar extends Control
     @$menuItemEraseAll().click => @trigger "eraseAll"
     @$menuAbout().click =>
       window.open "http://quickui.org/docs/contacts.html"
+    $( document ).keydown ( event ) =>
+      switch event.which
+        when 45, 187 # Insert or +/=
+          @trigger "new"
+          event.preventDefault()
