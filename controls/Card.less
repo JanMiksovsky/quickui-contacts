@@ -8,6 +8,12 @@
   width: 325px;
   
   .container {
+    /*
+     * The background color of this container will be picked by the Fader
+     * control to construct an alpha-blended gradient for the fading effect.
+     * (IE8 will actually use the background color in the selected state; 
+     * see note below.)
+     */
     background: #fafafa;
     border: 1px solid #ccc;
     .border-box;
@@ -47,7 +53,14 @@
    */
   &.selected {
     .container {
-      background: white;
+      /*
+       * This background color is picked up by the Fader control in IE8. In IE8,
+       * element insertion is detected using a more primitive polling loop,
+       * with the result that, at the point the Fader is constructing the
+       * fade gradient, the "selected" class will have already been applied.
+       * The perceptible visual difference in the fade is negligible.
+       */
+      background: #ffffff;
       .box-shadow( 5px 5px 40px rgba( 0, 0, 0, 0.75 ) );
       cursor: auto;
       height: auto;

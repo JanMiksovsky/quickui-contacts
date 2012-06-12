@@ -7,7 +7,7 @@ class window.Card extends Control
   inherited:
     content:
       # The Fader fades out any text that can't fit in the normal state.
-      control: Fader, class: "container", direction: "vertical", content:
+      control: Fader, ref: "container", direction: "vertical", content:
         html: "div", ref: "Card_content"
 
   # The card's content goes inside the div defined above.
