@@ -22,13 +22,16 @@ class window.Toolbar extends Control
     ]
 
   initialize: ->
+    # Wire up the toolbar buttons.
     @$buttonNew().click => @trigger "new"
     @$menuItemSamples().click => @trigger "samples"
     @$menuItemEraseAll().click => @trigger "eraseAll"
     @$menuAbout().click =>
       window.open "http://quickui.org/docs/contacts.html"
+
+    # Define keyboard shortcuts for toolbar commands.
     $( document ).keydown ( event ) =>
       switch event.which
-        when 45, 187 # Insert or +/=
+        when 45, 187 # Insert key or the +/= key
           @trigger "new"
           event.preventDefault()

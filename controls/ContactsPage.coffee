@@ -22,19 +22,20 @@ class window.ContactsPage extends Page
       remaining space goes to the main content region. On a modern browser that
       supports CSS flexbox layout, VerticalPanels will use that.
       ###
-      control: "VerticalPanels", constrainHeight: true
+      control: "VerticalPanels"
+      constrainHeight: true
       top:
         control: "Toolbar"
       content:
-        control: "ContactListBox", ref: "ContactsPage_contacts"
+        control: "ContactListBox", ref: "contactListBox"
 
-  # The page exposes various list box properties as its own properties.
-  # This lets the Presenter manipulate the set of contacts and the selection
-  # without needing to give it direct access to the list box.
-  contacts: Control.chain "$ContactsPage_contacts", "items"
+  # The page exposes various list box properties as its own properties. This
+  # way, we can let the Presenter manipulate the set of contacts and the
+  # selection without giving it direct access to the list box.
+  contacts: Control.chain "$contactListBox", "items"
   insertItemBefore: ( args... ) ->
-    @$ContactsPage_contacts().insertItemBefore args...
+    @$contactListBox().insertItemBefore args...
   removeItemAt: ( args... ) ->
-    @$ContactsPage_contacts().removeItemAt args...
-  selectedCard: Control.chain "$ContactsPage_contacts", "selectedControl"
-  selectedIndex: Control.chain "$ContactsPage_contacts", "selectedIndex"
+    @$contactListBox().removeItemAt args...
+  selectedContact: Control.chain "$contactListBox", "selectedControl"
+  selectedIndex: Control.chain "$contactListBox", "selectedIndex"

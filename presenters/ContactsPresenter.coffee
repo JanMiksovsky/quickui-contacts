@@ -63,14 +63,14 @@ class window.ContactsPresenter extends Backbone.View
     # (The empty name will sort the new contact to the beginning of the list.)
     @model.add name: ""
     # Put the card for the new contact in editing mode.
-    @$el.selectedCard()?.editing true
+    @$el.selectedContact()?.editing true
 
   # Render all the contacts.
   render: -> @$el.contacts @contacts()
   
   # Remove the indicated contact.
   remove: ( contact, contacts, options ) ->
-    @$el.selectedCard().editing false
+    @$el.selectedContact().editing false
     @$el.removeItemAt options.index
     # Select the new item at the previous position, or the last item.
     @$el.selectedIndex Math.max options.index, @contacts.length
