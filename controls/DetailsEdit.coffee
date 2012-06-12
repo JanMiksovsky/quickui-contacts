@@ -23,16 +23,18 @@ class window.DetailsEdit extends ContactDetails
         placeholder: "Name"
         ref: "name"
         required: true
+        validateOnBlur: false
         validateOnSet: false
       }
-      { control: TextBox, ref: "email", placeholder: "Email" }
+      { control: TextBox, ref: "email", class: "optional", placeholder: "Email" }
       {
         control: AutoSizeTextBox
         ref: "address"
+        class: "optional"
         minimumLines: 2
         placeholder: "Address"
       }
-      { control: TextBox, ref: "phone", placeholder: "Phone" }
+      { control: TextBox, ref: "phone", class: "optional", placeholder: "Phone" }
       {
         html: "div", ref: "buttonPanel", content: [
           { control: BasicButton, ref: "buttonSave", content: "Save", class: "prominent" }
@@ -89,6 +91,11 @@ class window.DetailsEdit extends ContactDetails
     @$name().keyup ( event ) =>
       if @is( ":visible" )
         @_validate()
+    @find( ".optional, .optional input, .optional textarea" ).focus =>
+      # When focus moves into an optional field, validate the name field.
+      # We don't do this simply when the name field blurs, because then a click
+      # on Cancel would validate, and that'd be annoying.
+      @$name().validate true
 
   name: ( name ) ->
     result = super name
