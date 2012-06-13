@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
 
-    // TODO: Provide copy of these grunt tasks.
-    grunt.loadTasks( "../../quickui/grunt" );
+    grunt.loadTasks( "grunt" );
 
     // Project configuration.
     grunt.initConfig({
@@ -24,7 +23,10 @@ module.exports = function(grunt) {
                     "models/*.coffee",
                     "presenters/*.coffee"
                 ],
-                dest: "contacts.js"
+                dest: "contacts.js",
+                options: {
+                    bare: false
+                }
             },
             test: {
                 src: "test/*.coffee",
