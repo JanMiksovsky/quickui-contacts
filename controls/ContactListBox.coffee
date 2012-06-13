@@ -31,8 +31,20 @@ class window.ContactListBox extends ListBox
           when 27 # Esc
             @selectedControl null   # Cancel selection
           when 46 # Del
-            if @selectedControl().editing() == false
+            if @selectedControl()?.editing() == false
               @selectedItem()?.destroy()
+    @on
+      "cancel save": =>
+        # User is done editing a card. Take focus back so user can continue
+        # to navigate with keyboard.
+        @focus()
+        true
+
+  selectedControl: ( selectedControl ) ->
+    result = super selectedControl
+    if selectedControl isnt undefined
+      @focus()
+    result
 
   # Override the ListBox._controlClick() method, which is invoked when the
   # user clicks on a card in the list.

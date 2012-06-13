@@ -4,7 +4,7 @@ Edit mode for contact information
 Provides the various input fields and some keyboard handling.
 ###
 
-class window.DetailsEdit extends ContactDetails
+class window.DetailsEditor extends ContactDetails
 
   inherited:
     left: [
@@ -110,11 +110,11 @@ class window.DetailsEdit extends ContactDetails
       email: @email()
       address: @address()
       phone: @phone()
+    @trigger "save"
     # If the user changed the name, the save() operation may cause the contact
     # to be resorted, which will cause this card to be removed. So do the save
     # last, and don't try to manipulate the card afterwards.
     contact.save()
-    @trigger "save"
 
   # See if we've got a valid contact
   _validate: ->

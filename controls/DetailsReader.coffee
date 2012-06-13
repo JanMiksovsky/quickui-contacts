@@ -3,7 +3,7 @@ Read mode for contact information
 Fairly simple presentation of contact data as static content.
 ###
 
-class window.DetailsRead extends ContactDetails
+class window.DetailsReader extends ContactDetails
 
   inherited:
     left: [

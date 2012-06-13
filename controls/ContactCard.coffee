@@ -14,11 +14,12 @@ class window.ContactCard extends Card
   
   inherited:
     content:
-      # The Editable control gives us read and edit modes.
+      # The Editable control gives us read and edit modes, which will be handled
+      # by the DetailsReader and DetailsEditor controls, respectively.
       control: Editable
       ref: "editable"
-      readClass: "DetailsRead"
-      editClass: "DetailsEdit"
+      readClass: "DetailsReader"
+      editClass: "DetailsEditor"
 
   contact: Control.chain "$editable", "content"
   

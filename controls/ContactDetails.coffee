@@ -1,7 +1,8 @@
 ###
-Base class for the two classes, DetailsRead and DetailsEdit, which are used to
-implement the read and edit modes, respectively, on a contact card. The shared
-aspects of the modes' layout and API is represented in this shared base class.
+Base class for the two classes, DetailsReader and DetailsEditor, which are used
+to implement the read and edit modes, respectively, on a contact card. The
+shared aspects of the modes' layout and API is represented in this shared base
+class.
 ###
 
 class window.ContactDetails extends Control
