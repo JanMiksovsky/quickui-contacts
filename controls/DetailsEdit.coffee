@@ -48,8 +48,7 @@ class window.DetailsEdit extends ContactDetails
     if @contact().isNew()
       @delete()
     else
-      @refresh()
-      @trigger "done"
+      @trigger "cancel"
 
   delete: ->
     @contact().destroy()
@@ -115,7 +114,7 @@ class window.DetailsEdit extends ContactDetails
     # to be resorted, which will cause this card to be removed. So do the save
     # last, and don't try to manipulate the card afterwards.
     contact.save()
-    @trigger "done"
+    @trigger "save"
 
   # See if we've got a valid contact
   _validate: ->

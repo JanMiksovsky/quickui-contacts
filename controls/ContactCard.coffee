@@ -14,45 +14,34 @@ class window.ContactCard extends Card
   
   inherited:
     content:
-      # The Mode control shows just one child (mode) at a time.
-      control: Mode, ref: "mode", content: [
-        { control: "DetailsRead", ref: "modeRead" }
-        { control: "DetailsEdit", ref: "modeEdit" }
-      ]
+      # The Editable control gives us read and edit modes.
+      control: Editable
+      ref: "editable"
+      readClass: "DetailsRead"
+      editClass: "DetailsEdit"
 
-  contact: Control.property( ( contact ) ->
-    @$modeRead().contact contact
-    @$modeEdit().contact contact
-  )
+  contact: Control.chain "$editable", "content"
   
-  # True if the card is being edited
-  editing: Control.chain( "applyClass/editing", ( editing ) ->
-    if editing
-      @$mode().activeChild @$modeEdit()
-      @$modeEdit().focusField "name"
-    else
-      # Switching back to read mode.
-      @$modeRead().refresh() # Pick up any changes made in edit mode.
-      @$mode().activeChild @$modeRead()
-  )
+  # The card's edit state is delegated to (and managed by) the Editable control.
+  editing: Control.chain "$editable", "editing"
   
   initialize: ->
     @click ( event ) =>
-      # A click on the card background in read mode behaves like clicking
-      # on the name field.
+      # Clicking on card background behaves like clicking on the name field.
       @_fieldClick "name"
     @on
-      "done": => @editing false
-      "fieldClick": ( event, fieldName ) => @_fieldClick fieldName
+      cancel: => @$editable().cancel()
+      fieldClick: ( event, fieldName ) => @_fieldClick fieldName
+      save: => @$editable().save()
 
   # The list box invokes this when a card becomes selected or deselected.
   selected: Control.property.bool ( selected ) ->
     if !selected and @editing()
-      @editing false    # Deselecting implicitly cancels editing.
+      @$editable().cancel() # Deselecting implicitly cancels editing.
 
   # The user clicked a field on the card. If the card is selected but not yet
   # in edit mode, switch to edit mode and put the focus in that field.
   _fieldClick: ( fieldName ) ->
     if @selected() and !@editing()
       @editing true
-      @$modeEdit().focusField fieldName
+      @$editable().editControl().focusField fieldName

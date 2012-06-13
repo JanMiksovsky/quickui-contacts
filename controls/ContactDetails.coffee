@@ -19,6 +19,9 @@ class window.ContactDetails extends Control
   contact: Control.property ( contact ) ->
     @refresh()
 
+  # Define the main content() of a ContactDetails to be the contact.
+  content: Control.chain "contact"
+
   # Expose the left and main regions as properties for use by subclasses.
   left: Control.chain "$left", "content"
   main: Control.chain "$main", "content"

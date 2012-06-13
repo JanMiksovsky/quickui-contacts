@@ -38,11 +38,9 @@ class window.ContactsPresenter extends Backbone.View
   # REVIEW: Is there a better way to do this in Backbone?
   eraseAll: ->
     contacts = @contacts()
-    @$el.showProgress true
     while contacts.length > 0
       contacts[0].destroy silent: true
     @model.reset()
-    @$el.showProgress false
 
   # The View events we're interested in.    
   events:
@@ -80,10 +78,8 @@ class window.ContactsPresenter extends Backbone.View
   samples: ->
     $.getJSON( "contacts.json" ).success ( data ) =>
       @eraseAll()
-      @$el.showProgress true
       @model.reset data.contacts
       contact.save() for contact in @contacts()
-      @$el.showProgress false
 
   # Return the index of the location where the given model should be inserted
   # in order to preserve sort order. Note that this function is defined with
