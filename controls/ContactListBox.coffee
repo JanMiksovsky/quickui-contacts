@@ -43,6 +43,7 @@ class window.ContactListBox extends ListBox
   selectedControl: ( selectedControl ) ->
     result = super selectedControl
     if selectedControl isnt undefined
+      # When selecting a control, keep the list selected.
       @focus()
     result
 
