@@ -23,15 +23,23 @@ class window.ContactCard extends Card
   contact: Control.chain "$editable", "content"
   
   # The card's edit state is delegated to (and managed by) the Editable control.
-  editing: Control.chain "$editable", "editing"
-  
+  editing: Control.chain( "$editable", "editing", ( editing ) ->
+    if editing
+      # When switching to edit mode, by default put focus in name field.
+      @$editable().editControl().focusField "name"
+  )
+
   initialize: ->
     @click ( event ) =>
-      # Clicking on card background behaves like clicking on the name field.
-      @_fieldClick "name"
+      @_editIfNotEditing()
     @on
       cancel: => @$editable().cancel()
-      fieldClick: ( event, fieldName ) => @_fieldClick fieldName
+      fieldClick: ( event, fieldName ) =>
+        # The user clicked a field on the card. If the card is selected but not
+        # yet in edit mode, switch to edit mode and put the focus in that field.
+        @_editIfNotEditing()
+        if @editing()
+          @$editable().editControl().focusField fieldName
       save: => @$editable().save()
 
   # The list box invokes this when a card becomes selected or deselected.
@@ -39,9 +47,7 @@ class window.ContactCard extends Card
     if !selected and @editing()
       @$editable().cancel() # Deselecting implicitly cancels editing.
 
-  # The user clicked a field on the card. If the card is selected but not yet
-  # in edit mode, switch to edit mode and put the focus in that field.
-  _fieldClick: ( fieldName ) ->
+  # If we're selected but not editing yet, switch to editing.
+  _editIfNotEditing: ->
     if @selected() and !@editing()
       @editing true
-      @$editable().editControl().focusField fieldName

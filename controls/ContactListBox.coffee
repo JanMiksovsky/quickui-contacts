@@ -26,7 +26,7 @@ class window.ContactListBox extends ListBox
       if containsTarget
         switch event.which
           when 13 # Enter
-            if !@selectedControl().editing()
+            if @selectedControl()?.editing() == false
               @selectedControl().editing true
           when 27 # Esc
             @selectedControl null   # Cancel selection

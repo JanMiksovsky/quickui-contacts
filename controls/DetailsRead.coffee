@@ -21,10 +21,10 @@ class window.DetailsRead extends ContactDetails
   initialize: ->
     # A click on a specific field generates an event that lets the card know
     # which *semantic* field was clicked.
-    @$name().click ( event ) => @_fieldClick event, "name"
-    @$email().click ( event ) => @_fieldClick event, "email"
-    @$address().click ( event ) => @_fieldClick event, "address"
-    @$phone().click ( event ) => @_fieldClick event, "phone"
+    @$name().click ( event ) => @_fieldClick "name"
+    @$email().click ( event ) => @_fieldClick "email"
+    @$address().click ( event ) => @_fieldClick "address"
+    @$phone().click ( event ) => @_fieldClick "phone"
 
-  _fieldClick: ( event, fieldName ) ->
+  _fieldClick: ( fieldName ) ->
     @trigger "fieldClick", [ fieldName ]
