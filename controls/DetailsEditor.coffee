@@ -65,13 +65,13 @@ class window.DetailsEditor extends ContactDetails
     # hence the need to stop these events from propagating up.
     @$buttonCancel().click ( event ) =>
       @cancel()
-      event.stopPropagation()
+      false
     @$buttonDelete().click ( event ) =>
       @delete()
-      event.stopPropagation()
+      false
     @$buttonSave().click ( event ) =>
       @save()
-      event.stopPropagation()
+      false
 
     # In the keyboard handlers, we check to see if we're still visible before
     # deciding whether to handle. Right after leaving edit mode, the keyboard
@@ -81,7 +81,7 @@ class window.DetailsEditor extends ContactDetails
       # Pressing Enter in single-line input fields saves the contact.
       if @is( ":visible" ) and event.which == 13 # Enter
         @save()
-        event.stopPropagation()
+        false
     @keydown ( event ) =>
       if @is( ":visible" )
         if event.which == 27 # Esc

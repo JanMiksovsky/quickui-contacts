@@ -24,8 +24,8 @@ class window.FieldLauncher extends Control
 
   initialize: ->
     @$launchButton().click ( event ) =>
-      window.location = @launchUrl()
-      event.stopPropagation()
+      window.open @launchUrl()
+      false
 
   # The content of the launch button
   launchButtonContent: Control.chain "$launchButton", "content"

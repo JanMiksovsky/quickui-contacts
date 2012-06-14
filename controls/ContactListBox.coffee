@@ -28,11 +28,14 @@ class window.ContactListBox extends ListBox
           when 13 # Enter
             if @selectedControl()?.editing() == false
               @selectedControl().editing true
+              false
           when 27 # Esc
             @selectedControl null   # Cancel selection
+            false
           when 46 # Del
             if @selectedControl()?.editing() == false
               @selectedItem()?.destroy()
+              false
     @on
       "cancel save": =>
         # User is done editing a card. Take focus back so user can continue
