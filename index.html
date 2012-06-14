@@ -37,8 +37,13 @@ $( function() {
         model: window.contacts
     });
 
-    /* Load the contacts collection. */
+    /* Load the existing contacts collection. */
     contacts.fetch();
+
+    if ( contacts.models.length === 0 ) {
+        /* Initialize the contacts collection with samples. */
+        contactsPresenter.samples();
+    }
     
 });
 </script>
