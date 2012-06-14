@@ -4,6 +4,8 @@
 .Toolbar {
   #gradient > .vertical-three-colors(#4078a5, #424254, 50%, #35354f);
   .box-shadow( 0 5px 1em rgba( 0, 0, 0, 0.3 ) );
+  /* IE won't render Debug popup properly if there's a filter on this. Grr. */
+  filter: none;
   padding: 1em 2em;
   position: relative; /* So z-index works */
   z-index: 2; /* Over content area and any selected card. */

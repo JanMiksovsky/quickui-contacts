@@ -1,5 +1,5 @@
 ###
-A business card showing information for a single card.
+A business card showing information for a single contact.
 
 This control serves as the View for an individual contact model. The model
 doesn't actually have to be an object of class Contact; the model just needs
