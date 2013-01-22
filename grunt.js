@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
-    grunt.loadTasks( "grunt" );
+    grunt.loadNpmTasks( "grunt-contrib-coffee" );
+    grunt.loadNpmTasks( "grunt-contrib-less" );
 
     // Project configuration.
     grunt.initConfig({

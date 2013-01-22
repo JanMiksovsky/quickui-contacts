@@ -1,0 +1,8 @@
+{
+    "name": "quickui-contacts",
+    "version": "0.0.1",
+    "devDependencies": {
+        "grunt-contrib-coffee": "~0.3",
+        "grunt-contrib-less": "~0.3"
+    }
+}
